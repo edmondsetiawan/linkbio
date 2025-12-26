@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Link Bio</title>
+  <title>Edmond Setiawan's Bio</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -51,6 +51,24 @@
     a:hover {
       background: #16a34a;
     }
+    .btn-musescore {
+      background: #1da1f2; /* MuseScore light blue */
+      color: #ffffff;
+    }
+    
+    .btn-musescore:hover {
+      background: #1991da;
+    }
+    
+    .btn-cancel {
+      background: #dc2626; /* red-600 */
+      color: #ffffff;
+    }
+    
+    .btn-cancel:hover {
+      background: #b91c1c;
+    }
+
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3ZCQ77QWX4"></script>
@@ -84,7 +102,7 @@
       </p>
   
       <a href="https://musescore.com/user/67308169/scores/30452735?share=copy_link"
-         class="primary"
+         class="primary btn-musescore"
          onclick="downloadViaMuseScore()"
          style="display:block; margin:10px 0;">
          Via MuseScore
@@ -97,6 +115,7 @@
       </a>
   
       <a href="#"
+         class="btn-cancel"
          onclick="closeDownloadPopup()"
          style="display:block; margin-top:15px; font-size:13px; opacity:0.6;">
          Cancel
