@@ -64,7 +64,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="inedx.html"><img src="img/profile.jpg" alt="Profile"></a>
+    <img src="img/profile.jpg" alt="Profile">
     <h1>Edmond Setiawan</h1>
     <p>Mat 6:33 (12 yrs)<br/>
 #perfectpitch #singing #piano #sequencer<br/>
@@ -73,9 +73,78 @@
 🇮🇩Jakarta✌🏻</p>
     <a href="https://instagram.com/edmondsetiawan" target="_blank" onclick="trackClick(`Instagram`)">Instagram</a>
     <a href="https://youtube.com/@edmondsetiawan" target="_blank">YouTube</a>
-    <a href="scores.html" onclick="trackClick(`Download Music Sheet`)">Download Music Sheet</a>
+    <a href="#" onclick="openDownloadPopup('IBU_KITA_KARTINI')">Ibu Kita Kartini</a>
+  </div>
+  <div id="IBU_KITA_KARTINI" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:999;">
+    <div style="background:#020617; max-width:360px; margin:15% auto; padding:20px; border-radius:12px; text-align:center;">
+      
+      <h3 style="margin-top:0;">Download Ibu Kita Kartini Score</h3>
+      <p style="font-size:14px; opacity:0.8;">
+        Pilih format
+      </p>
+  
+      <a href="https://musescore.com/user/67308169/scores/30452735?share=copy_link"
+         class="primary"
+         onclick="downloadViaMuseScore()"
+         style="display:block; margin:10px 0;">
+         Via MuseScore
+      </a>
+  
+      <a href="scores/ibu-kita-kartini-solo-piano-arr-edmond-setiawan.pdf"
+         onclick="downloadViaPDF()"
+         style="display:block; margin:10px 0;">
+         Via PDF
+      </a>
+  
+      <a href="#"
+         onclick="closeDownloadPopup()"
+         style="display:block; margin-top:15px; font-size:13px; opacity:0.6;">
+         Cancel
+      </a>
+    </div>
   </div>
   <script>
+    let currentScoreId = null;
+    
+    function openDownloadPopup(scoreId) {
+      currentScoreId = scoreId;
+      document.getElementById(scoreId).style.display = 'block';
+    
+      gtag('event', 'download_popup_open', {
+        event_category: 'music_score',
+        event_label: scoreId
+      });
+    }
+    function downloadViaMuseScore(event) {
+      event.preventDefault();
+      gtag('event', 'download_musescore', {
+        event_category: 'music_score',
+        event_label: currentScoreId,
+        event_callback: function () {
+          window.open(event.target.href, '_blank');
+        }
+      });
+    
+      closeDownloadPopup();
+    }
+
+    function downloadViaPDF(event) {
+      event.preventDefault();
+      gtag('event', 'download_pdf', {
+        event_category: 'music_score',
+        event_label: currentScoreId,
+        event_callback: function () {
+          window.location.href = event.target.href;
+        }
+      });
+    
+      closeDownloadPopup();
+    }
+    
+    function closeDownloadPopup() {
+      document.getElementById('downloadModal').style.display = 'none';
+    }
+    
     function trackClick(label) {
       gtag('event', 'click', {
         event_category: 'link_bio',
