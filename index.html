@@ -64,7 +64,7 @@
 </head>
 <body>
   <div class="container">
-    <img src="profile.jpg" alt="Profile">
+    <img src="img/profile.jpg" alt="Profile">
     <h1>Edmond Setiawan</h1>
     <p>Mat 6:33 (12 yrs)<br/>
 #perfectpitch #singing #piano #sequencer<br/>
@@ -80,6 +80,23 @@
         event_category: 'link_bio',
         event_label: label
       });
+    }
+    function trackDownload(event, label) {
+      event.preventDefault();
+
+      gtag('event', 'download', {
+        event_category: 'music_score',
+        event_label: label,
+        event_callback: function () {
+          window.location.href = event.target.href;
+        }
+      });
+    
+      setTimeout(() => {
+        window.location.href = event.target.href;
+      }, 300);
+    
+      return false;
     }
   </script>
 </body>
